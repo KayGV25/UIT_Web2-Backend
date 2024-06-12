@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "name": "uit_web2-backend",
+  "version": "1.0.0",
+  "description": "Backend for UIT_Web2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Vũ Đăng Khương,Vũ Anh Kỳ",
+  "license": "ISC"
+}
