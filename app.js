@@ -9,5 +9,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`200`);
+    console.clear();
+    console.log("Starting server on port " + port);
+    console.log("http://localhost:" + port);
 });
