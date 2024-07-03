@@ -1,18 +1,22 @@
-var express = require('express');
-var app = express();
-var port = 443;
+const express = require('express');
+const mongoose = require("mongoose");
 const dotenv = require('dotenv');
+
 dotenv.config();
+const app = express();
 
 const PORT = process.env.PORT;
 const MONGODB_KEY = process.env.MONGODB_KEY;
 const LOCAL_HOST = process.env.LOCAL_HOST;
 
-app.use(express.json());
+mongoose.set("strictQuery", false);
+main().catch((err) => console.log(err));
+async function main() {
+    await mongoose.connect(MONGODB_KEY);
+    console.log("MongoDB Connected");
+}
 
-app.get('/', (req, res) => {
-    res.send("Deploying on render.com");
-});
+app.use(express.json());
 
 app.listen(PORT, () => {
     console.clear();
