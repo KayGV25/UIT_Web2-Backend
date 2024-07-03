@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const dotenv = require('dotenv');
+const indexRouter = require('./routes/index');
 
 dotenv.config();
 const app = express();
@@ -17,6 +18,7 @@ async function main() {
 }
 
 app.use(express.json());
+app.use('/', indexRouter);
 
 app.listen(PORT, () => {
     console.clear();
