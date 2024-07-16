@@ -3,9 +3,7 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
 name: { type: String, required: true },
-isAdmin: { type: Boolean },
-dateCreated: { type: Date },
-dateUpdated: { type: Date },
-});
+isAdmin: { type: Boolean, required: true },
+}, { timestamps: true });
 
 module.exports = mongoose.model("User", UserSchema);
