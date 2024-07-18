@@ -8,7 +8,8 @@ ingredients: { type: String, required: true },
 instructions: { type: String, required: true },
 author: { type: String, required: true },
 time: { type: Number, required: true },
-tags: { type: String, required: true }
+tags: { type: String, required: true },
+image: { type: String, required: true }
 }, { timestamps: true });
 
 module.exports = mongoose.model("Recipe", RecipeSchema);
