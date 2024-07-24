@@ -11,4 +11,4 @@ tags: { type: String, required: true },
 image: { type: String, required: true }
 }, { timestamps: true });
 
-module.exports = mongoose.model("Recipe", RecipeSchema);
+module.exports = mongoose.model("Recipes", RecipeSchema);
