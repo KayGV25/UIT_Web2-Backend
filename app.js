@@ -1,31 +1,31 @@
-const express = require('express');
+const cors = require("cors");
+const dotenv = require("dotenv");
+const express = require("express");
 const mongoose = require("mongoose");
-const dotenv = require('dotenv');
-const cors = require('cors');
-const app = express();
+const authRouter = require("./routes/auth");
+const cookieParser = require("cookie-parser");
+
 dotenv.config();
+const app = express();
 
-const recipesRouter = require('./routes/recipes');
-const usersRouter = require('./routes/users');
+(async () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URL);
+        console.log("MongoDB Connected");
+    }
+    catch(err) {
+        console.log(err);
+    }
+})();
 
-const PORT = process.env.PORT;
-const MONGODB_KEY = process.env.MONGODB_KEY;
-const LOCAL_HOST = process.env.LOCAL_HOST;
 
-mongoose.set("strictQuery", false);
-main().catch((err) => console.log(err));
-async function main() {
-    await mongoose.connect(MONGODB_KEY);
-    console.log("MongoDB Connected");
-}
-
-app.use(express.json());
 app.use(cors());
-app.use('/', recipesRouter);
-app.use('/', usersRouter);
+app.use(cookieParser());
+app.use(express.json());
 
-app.listen(PORT, () => {
+app.use("/", authRouter);
+
+app.listen(process.env.PORT, () => {
     console.clear();
-    console.log(`Starting server on port ${PORT}`);
-    console.log(`${LOCAL_HOST}`);
+    console.log(`Running at ${process.env.LOCAL_HOST}`);
 });
