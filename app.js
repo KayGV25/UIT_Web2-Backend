@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
 const authRouter = require("./routes/auth");
+const recipeRouter = require("./routes/recipe")
 
 dotenv.config();
 const app = express();
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", authRouter);
+app.use("/", recipeRouter);
 
 app.listen(process.env.PORT, () => {
     console.clear();
