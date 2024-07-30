@@ -4,11 +4,6 @@ const bcrypt = require("bcrypt");
 const authController = {
     registerUser: async(req, res) => {
         try {
-            const user = await User.findOne({ username: req.body.username });
-            if (user) {
-                return res.status(400).json("User existed.");
-
-            }
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(req.body.password, salt);
 
@@ -26,9 +21,9 @@ const authController = {
     },
     loginUser: async(req, res) => {
         try {
-            const user = await User.findOne({username: req.body.username });
+            const user = await User.findOne({ username: req.body.username });
             if (!user) {
-                return res.status(404).json("User not found");
+                res.status(404).json("User not found");
             }
 
             const password = await bcrypt.compare(
@@ -36,7 +31,7 @@ const authController = {
                 user.password
             );
             if (!password) {
-                res.status(400).json("Wrong password.");
+                res.status(401).json("Wrong password.");
             }
             res.status(200).json(user);
         }
