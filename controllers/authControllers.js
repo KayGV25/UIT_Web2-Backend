@@ -23,7 +23,7 @@ const authController = {
         try {
             const user = await User.findOne({ username: req.body.username });
             if (!user) {
-                res.status(404).json("User not found");
+                res.status(404).json("User not found.");
             }
 
             const password = await bcrypt.compare(
