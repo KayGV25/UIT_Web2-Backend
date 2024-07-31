@@ -32,6 +32,11 @@ const recipeSchema = new mongoose.Schema({
         isReported: {
             type: Boolean,
             required: true
+        },
+        favorites: {
+            type: Number,
+            required: true,
+            default: 0
         }
     }, 
     { timestamps: true }
