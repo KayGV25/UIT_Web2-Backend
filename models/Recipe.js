@@ -28,15 +28,6 @@ const recipeSchema = new mongoose.Schema({
         image: { 
             type: String, 
             required: true
-        },
-        isReported: {
-            type: Boolean,
-            required: true
-        },
-        favorites: {
-            type: Number,
-            required: true,
-            default: 0
         }
     }, 
     { timestamps: true }
