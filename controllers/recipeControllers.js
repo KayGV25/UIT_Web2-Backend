@@ -56,7 +56,7 @@ const recipeController = {
     },
     createOne: async(req, res) => {
         try {
-            const recipe = new Recipe(req.body);
+            const recipe = new Recipe(data);
             await recipe.save();
             res.status(201).json(recipe);
         }
