@@ -28,6 +28,10 @@ const recipeSchema = new mongoose.Schema({
         image: { 
             type: String, 
             required: true
+        },
+        timesFavorite: {
+            type: Number,
+            default: 0
         }
     }, 
     { timestamps: true }
