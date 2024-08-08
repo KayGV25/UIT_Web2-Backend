@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 
 const authRouter = require("./routes/auth");
 const recipeRouter = require("./routes/recipe")
+const reportRouter = require("./routes/report");
+const favoriteRouter = require("./routes/favorite");
 
 dotenv.config();
 const app = express();
@@ -19,6 +21,8 @@ app.use(express.json());
 
 app.use("/", authRouter);
 app.use("/", recipeRouter);
+app.use("/", reportRouter);
+app.use("/", favoriteRouter);
 
 app.listen(process.env.PORT, () => {
     console.clear();
