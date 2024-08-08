@@ -22,7 +22,7 @@ const recipeController = {
             res.status(500).json(err);
         }
     },
-    getFilter: async(req, res) => {
+    getMany: async(req, res) => {
         try {
             const { name, tags, ingredients } = req.query;
             let query = {};
@@ -64,6 +64,15 @@ const recipeController = {
             res.status(500).json(err);
         }
     },
+    deleteOne: async(req, res) => {
+        try {
+            const recipe = Recipe.findOneAndDelete(req.params.id);
+            res.status(200).json("Recipe deleted.");
+        }
+        catch (err) {
+            res.status(500).json(err);
+        }
+    }
 }
 
 module.exports = recipeController;
