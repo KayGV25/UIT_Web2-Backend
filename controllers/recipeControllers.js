@@ -4,6 +4,9 @@ const recipeController = {
     getAll: async(req, res) => {
         try {
             const recipes = await Recipe.find();
+            if (recipes.length === 0) {
+                return res.status(404).json("No reicpe found.");
+            }
             res.status(200).json(recipes);
         }
         catch (err) {
@@ -13,9 +16,6 @@ const recipeController = {
     getOne: async(req, res) => {
         try {
             const recipe = await Recipe.findById(req.params.id);
-            if (!recipe) {
-                return res.status(404).json("Recipe not found.");
-            }
             res.status(200).json(recipe);
         }
         catch (err) {
@@ -48,6 +48,9 @@ const recipeController = {
             }
 
             const recipes = await Recipe.find(query);
+            if (recipes.length === 0) {
+                return res.status(404).json("No recipe found.");
+            }
             res.status(200).json(recipes);
         }
         catch (err) {
@@ -66,8 +69,11 @@ const recipeController = {
     },
     deleteOne: async(req, res) => {
         try {
-            const recipe = Recipe.findOneAndDelete(req.params.id);
-            res.status(200).json("Recipe deleted.");
+            const recipe = await Recipe.findByIdAndDelete(req.params.id);
+            if (!recipe) {
+                return res.status(404).json("Recipe not found.");
+            }
+            res.status(410).json("Recipe deleted.");
         }
         catch (err) {
             res.status(500).json(err);
