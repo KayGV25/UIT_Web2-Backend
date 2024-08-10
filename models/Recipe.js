@@ -17,10 +17,6 @@ const recipeSchema = new mongoose.Schema({
             type: String, 
             required: true
         },
-        author_id: {
-            type: String, 
-            required: true
-        },
         time: { 
             type: String, 
             required: true

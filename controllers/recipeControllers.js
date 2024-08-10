@@ -24,7 +24,7 @@ const recipeController = {
     },
     getMany: async(req, res) => {
         try {
-            const { name, tags, ingredients } = req.query;
+            const { name, tags, ingredients, author } = req.query;
             let query = {};
 
             if (name) {
@@ -45,6 +45,9 @@ const recipeController = {
                     .map(ingredient => `${ingredient}`)
                     .join('|');
                 query.ingredients = new RegExp(ingredientsPattern, 'i');            
+            }
+            if (author) {
+                query.author = new RegExp(author, 'i');
             }
 
             const recipes = await Recipe.find(query);
