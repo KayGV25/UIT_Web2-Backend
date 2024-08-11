@@ -38,7 +38,7 @@ const authController = {
             const { password, ...other } = user._doc;
             const token = jwt.sign(
                 {
-                    id: user.id,
+                    id: user._id,
                     idAdmin: user.isAdmin
                 },
                 process.env.JWT_KEY,
