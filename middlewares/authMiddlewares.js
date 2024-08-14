@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const authMiddleware = {
-    verifyToken: (req, res, next) => {
+    verifyUser: (req, res, next) => {
         const token = req.headers.token;
         if (token) {
             jwt.verify(token, process.env.JWT_KEY, (err, user) => {
@@ -16,8 +16,8 @@ const authMiddleware = {
             return res.status(401).json("Unauthenticated.");
         }
     }, 
-    verifyTokenAndAdmin: (req, res, next) => {
-        authMiddleware.verifyToken (req, res, () => {
+    verifyAdmin: (req, res, next) => {
+        authMiddleware.verifyUser (req, res, () => {
             if (req.user.isAdmin) {
                 next();
             }
