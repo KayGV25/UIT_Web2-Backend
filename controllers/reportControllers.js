@@ -16,27 +16,30 @@ const reportController = {
     reportOne: async(req, res) => {
         const {recipeId, userId} = req.body;
         try {
-            const reportedRecipe = await Report.findOne({recipeId: recipeId});
+            const reportedRecipe = await Report.findOne({ recipeId: recipeId });
             if (reportedRecipe) {
-                let usersReported = reportedRecipe.reportedBy;
-                const findUser = usersReported.includes(userId)
-                if(findUser != "null" && !findUser){
-                    usersReported.push(userId);
-                    const updated = await Report.findByIdAndUpdate(reportedRecipe._id, 
+                const reportedBy = reportedRecipe.reportedBy;
+                if (!reportedBy.includes(userId)) {
+                    reportedBy.push(userId);
+                    reportedRecipe.timesReported += 1;
+
+                    const updatedReports = await Report.findByIdAndUpdate(
+                        reportedRecipe._id, 
                         {
-                            timesReported: reportedRecipe.timesReported + 1, 
-                            reportedBy: usersReported
-                        })
-                    return res.status(200).json(updated)
+                            timesReported: reportedRecipe.timesReported, 
+                            reportedBy: reportedBy
+                        }, { new: true }
+                    );
+                    return res.status(201).json(updatedReports);
                 } 
                 else {
                     return res.status(403).json("You cannot report again.");
                 } 
             }
             else {
-                const reportedRecipe = new Report({ recipeId: recipeId, reportBy: [userId] });
+                const reportedRecipe = new Report({ recipeId: recipeId, reportedBy: [userId] });
                 await reportedRecipe.save();
-                return res.status(200).json(reportedRecipe);
+                return res.status(201).json(reportedRecipe);
             }
         }
         catch (err) {
