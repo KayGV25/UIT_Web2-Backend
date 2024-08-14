@@ -4,7 +4,8 @@
   "description": "- Vũ Đăng Khương\r - Vũ Anh Kỳ",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "doc": "apidoc -i src -o apidoc"
   },
   "author": "",
   "license": "ISC",
