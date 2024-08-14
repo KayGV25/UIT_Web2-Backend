@@ -34,7 +34,7 @@ const reportController = {
                 } 
             }
             else {
-                const reportedRecipe = new Reicpe({ recipeId: recipeId, reportBy: [userId] });
+                const reportedRecipe = new Report({ recipeId: recipeId, reportBy: [userId] });
                 await reportedRecipe.save();
                 return res.status(200).json(reportedRecipe);
             }
@@ -45,7 +45,7 @@ const reportController = {
     },
     deleteOne: async(req, res) => {
         try {
-            
+
         }
         catch (err) {
             res.status(500).json(err);
