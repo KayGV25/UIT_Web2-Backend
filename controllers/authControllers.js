@@ -39,7 +39,7 @@ const authController = {
             const token = jwt.sign(
                 {
                     id: user._id,
-                    idAdmin: user.isAdmin
+                    isAdmin: user.isAdmin
                 },
                 process.env.JWT_KEY,
                 { expiresIn: "3h" }
