@@ -1,13 +1,12 @@
-const Recipe = require("../models/Recipe");
 const User = require("../models/User");
+const Recipe = require("../models/Recipe");
 
 const favoriteController = {
     getAll: async(req, res) => {
         try {
             const user = await User.findById(req.params.id);
-            const recipeList = user.favorite;
-            const favoriteRecipe = await Recipe.find({'_id' : { $in: recipeList}}); 
-            return res.status(200).json(favoriteRecipe);
+            const favoriteRecipes = await Recipe.find({'_id' : { $in: user.favorite }}); 
+            return res.status(200).json(favoriteRecipes);
         }
         catch (err) {
             res.status(500).json(err);
@@ -19,17 +18,17 @@ const favoriteController = {
         try {
             const user = await User.findById(userId);
             const recipe = await Recipe.findById(recipeId);
-            let recipeList = user.favorite;
-            if (recipeList.includes(recipeId)) {
-                recipeList = recipeList.filter((ele) => ele !== recipeId);
+            let favoriteRecipes = user.favorite;
+            if (favoriteRecipes.includes(recipeId)) {
+                favoriteRecipes = favoriteRecipes.filter((ele) => ele !== recipeId);
                 count = -1;
             }
             else {
-                recipeList.push(recipeId);
+                favoriteRecipes.push(recipeId);
                 count = 1;
             }
-            const resRecipe = await Recipe.findByIdAndUpdate(recipe._id, {timesFavorite:( recipe.timesFavorite + count)});
-            const resUser = await User.findByIdAndUpdate(user._id, {favorite: recipeList});
+            await Recipe.findByIdAndUpdate(recipe._id, {timesFavorite: (recipe.timesFavorite + count)});
+            await User.findByIdAndUpdate(user._id, {favorite: favoriteRecipes});
             res.status(200).json(count);
         }
         catch (err) {
