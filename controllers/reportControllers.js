@@ -16,12 +16,12 @@ const reportController = {
     reportOne: async(req, res) => {
         const {recipeId, userId} = req.body;
         try {
-            const reportedRecipe = await Report.findById(req.body.recipeId);
+            const reportedRecipe = await Report.findOne({recipeId: req.body.recipeId});
             if (reportedRecipe) {
                 let usersReported = reportedRecipe.reportedBy;
-                const findUser = await usersReported.find(req.body.userId)
-                if(!findUser){
-                    usersReported.push(req.user.userId);
+                const findUser = usersReported.includes(req.body.userId)
+                if(findUser != "null" && !findUser){
+                    usersReported.push(req.body.userId);
                     const updated = await Report.findByIdAndUpdate(reportedRecipe._id, 
                         {
                             timesReported: reportedRecipe.timesReported + 1, 
