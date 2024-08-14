@@ -4,7 +4,7 @@ const User = require("../models/User");
 const favoriteController = {
     getAll: async(req, res) => {
         try {
-            const user = await User.findById(req.body.userId);
+            const user = await User.findById(req.params.id);
             const recipeList = user.favorite;
             const favoriteRecipe = await Recipe.find({'_id' : { $in: recipeList}}); 
             return res.status(200).json(favoriteRecipe);
