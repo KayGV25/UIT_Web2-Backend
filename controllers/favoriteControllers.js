@@ -30,7 +30,7 @@ const favoriteController = {
             }
             const resRecipe = await Recipe.findByIdAndUpdate(recipe._id, {timesFavorite:( recipe.timesFavorite + count)});
             const resUser = await User.findByIdAndUpdate(user._id, {favorite: recipeList});
-            res.status(200).json(recipeList);
+            res.status(200).json(count);
         }
         catch (err) {
             res.status(500).json(err);
