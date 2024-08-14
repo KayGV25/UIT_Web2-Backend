@@ -19,20 +19,18 @@ const favoriteController = {
         try {
             const user = await User.findById(userId);
             const recipe = await Recipe.findById(recipeId);
-            const recipeList = user.favorite;
+            let recipeList = user.favorite;
             if (recipeList.includes(recipeId)) {
-                recipeList = recipeList.filter(function(recipe){
-                    return recipe !== recipeId;
-                });
+                recipeList = recipeList.filter((ele) => ele !== recipeId);
                 count = -1;
             }
             else {
                 recipeList.push(recipeId);
                 count = 1;
             }
-            const resRecipe = await Recipe.findByIdAndUpdate(recipe._id, {timesFavorite: recipe.timesFavorite + count});
+            const resRecipe = await Recipe.findByIdAndUpdate(recipe._id, {timesFavorite:( recipe.timesFavorite + count)});
             const resUser = await User.findByIdAndUpdate(user._id, {favorite: recipeList});
-            res.status(200).json("bruh");
+            res.status(200).json(recipeList);
         }
         catch (err) {
             res.status(500).json(err);
