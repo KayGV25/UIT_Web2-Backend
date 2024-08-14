@@ -48,7 +48,14 @@ const reportController = {
     },
     deleteOne: async(req, res) => {
         try {
-        
+            const reportedRecipe = await Report.findOne({ recipeId: req.params.id });
+            if (reportedRecipe) {
+                await Report.findByIdAndDelete(reportedRecipe._id);
+                res.status(410).json("Recipe deleted.");
+            }
+            else {
+                res.status(404).json("No recipe found.");
+            }
         }
         catch (err) {
             res.status(500).json(err);
