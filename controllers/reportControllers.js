@@ -51,10 +51,10 @@ const reportController = {
             const reportedRecipe = await Report.findOne({ recipeId: req.params.id });
             if (reportedRecipe) {
                 await Report.findByIdAndDelete(reportedRecipe._id);
-                res.status(410).json("Recipe deleted.");
+                res.status(200).json("Recipe deleted.");
             }
             else {
-                res.status(404).json("No recipe found.");
+                res.status(204).json("No recipe found.");
             }
         }
         catch (err) {

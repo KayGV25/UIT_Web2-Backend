@@ -74,9 +74,9 @@ const recipeController = {
         try {
             const recipe = await Recipe.findByIdAndDelete(req.params.id);
             if (!recipe) {
-                return res.status(404).json("Recipe not found.");
+                return res.status(204).json("Recipe not found.");
             }
-            res.status(410).json("Recipe deleted.");
+            res.status(200).json("Recipe deleted.");
         }
         catch (err) {
             res.status(500).json(err);
