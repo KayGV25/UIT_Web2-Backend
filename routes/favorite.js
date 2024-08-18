@@ -17,18 +17,18 @@ router.get("/favorites/recipes/:id", authMiddleware.verifyUser, favoriteControll
  * @apiExample {curl} Example usage:
  * curl -i http://localhost:443/favorites/recipes/:id 
  * 
- * @apiSuccess {json} _id ID of the account initialize by MongoDB
- * @apiSuccess {json} name Name of the recipe
- * @apiSuccess {json} ingredients Ingredients needed for the recipe
- * @apiSuccess {json} instructions Instructions on how to make the dish
- * @apiSuccess {json} author Author of the recipe
- * @apiSuccess {json} time Preparation time of the dish
- * @apiSuccess {json} tags Dish categories
- * @apiSuccess {json} image Image URL of the dish
- * @apiSuccess {json} timesFavorite Times the recipe has been added to favorite
- * @apiSuccess {json} createdAt Date and time when the account was created
- * @apiSuccess {json} updatedAt Date and time when the account was updated
- * @apiSuccess {json} __v Version key of the document
+ * @apiSuccess {string} _id ID of the account initialize by MongoDB
+ * @apiSuccess {string} name Name of the recipe
+ * @apiSuccess {string} ingredients Ingredients needed for the recipe
+ * @apiSuccess {string} instructions Instructions on how to make the dish
+ * @apiSuccess {string} author Author of the recipe
+ * @apiSuccess {string} time Preparation time of the dish
+ * @apiSuccess {string} tags Dish categories
+ * @apiSuccess {string} image Image URL of the dish
+ * @apiSuccess {string} timesFavorite Times the recipe has been added to favorite
+ * @apiSuccess {string} createdAt Date and time when the account was created
+ * @apiSuccess {string} updatedAt Date and time when the account was updated
+ * @apiSuccess {string} __v Version key of the document
  * 
  * @apiSuccessExample Success response:
  * [
@@ -50,7 +50,7 @@ router.get("/favorites/recipes/:id", authMiddleware.verifyUser, favoriteControll
  * 
  * @apiError (Unauthorized 401) {json} Unauthenticated User don't have token
  * @apiError (Forbidden 403) {json} InvalidToken User's token has expired
- * @apiError (Internal Server Error 500) IdNotfound User ID not found
+ * @apiError (Internal Server Error 500) {json} IdNotfound User ID not found
  * 
  * @apiErrorExample Error-Response:
  * {
@@ -80,14 +80,12 @@ router.post("/favorites/recipes", authMiddleware.verifyUser, favoriteController.
  * @apiExample {curl} Example usage:
  * curl -i http://localhost:443/favorites/recipes
  * 
- * @apiSuccess {json} count Indicates that the user add or remove recipe from favorite
- * 
  * @apiSuccessExample Success-Response:
  * 1
  * 
  * @apiError (Unauthorized 401) {json} Unauthenticated User don't have token
  * @apiError (Forbidden 403) {json} InvalidToken User's token has expired
- * @apiError (Internal Server Error 500) IdNotfound User ID or recipe ID not found 
+ * @apiError (Internal Server Error 500) {json} IdNotfound User ID or recipe ID not found 
  * 
  * @apiErrorExample Error-Response:
  * {

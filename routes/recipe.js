@@ -15,18 +15,18 @@ router.get("/recipes", recipeController.getAll);
  * @apiExample {curl} Example usage:
  * curl -i http://localhost:443/recipes
  * 
- * @apiSuccess {json} _id ID of the account initialize by MongoDB
- * @apiSuccess {json} name Name of the recipe
- * @apiSuccess {json} ingredients Ingredients needed for the recipe
- * @apiSuccess {json} instructions Instructions on how to make the dish
- * @apiSuccess {json} author Author of the recipe
- * @apiSuccess {json} time Preparation time of the dish
- * @apiSuccess {json} tags Dish categories
- * @apiSuccess {json} image Image URL of the dish
- * @apiSuccess {json} timesFavorite Times the recipe has been added to favorite
- * @apiSuccess {json} createdAt Date and time when the account was created
- * @apiSuccess {json} updatedAt Date and time when the account was updated
- * @apiSuccess {json} __v Version key of the document
+ * @apiSuccess {string} _id ID of the account initialize by MongoDB
+ * @apiSuccess {string} name Name of the recipe
+ * @apiSuccess {string} ingredients Ingredients needed for the recipe
+ * @apiSuccess {string} instructions Instructions on how to make the dish
+ * @apiSuccess {string} author Author of the recipe
+ * @apiSuccess {string} time Preparation time of the dish
+ * @apiSuccess {string} tags Dish categories
+ * @apiSuccess {string} image Image URL of the dish
+ * @apiSuccess {string} timesFavorite Times the recipe has been added to favorite
+ * @apiSuccess {string} createdAt Date and time when the account was created
+ * @apiSuccess {string} updatedAt Date and time when the account was updated
+ * @apiSuccess {string} __v Version key of the document
  * 
  * @apiSuccessExample Success-Response:
  * [
@@ -74,18 +74,18 @@ router.post("/recipes/upload", authMiddleware.verifyUser, recipeController.creat
  * @apiExample {curl} Example usage:
  * curl -i http://localhost:443/recipes/upload
  * 
- * @apiSuccess (Created 201) {json} name Name of the recipe
- * @apiSuccess (Created 201) {json} ingredients Ingredients needed for the recipe
- * @apiSuccess (Created 201) {json} instructions Instructions on how to make the dish
- * @apiSuccess (Created 201) {json} author Author of the recipe
- * @apiSuccess (Created 201) {json} time Preparation time of the dish
- * @apiSuccess (Created 201) {json} tags Dish categories
- * @apiSuccess (Created 201) {json} image Image URL of the dish
- * @apiSuccess (Created 201) {json} timesFavorite Times the recipe has been added to favorite
- * @apiSuccess (Created 201) {json} _id ID of the account initialize by MongoDB
- * @apiSuccess (Created 201) {json} createdAt Date and time when the account was created
- * @apiSuccess (Created 201) {json} updatedAt Date and time when the account was updated
- * @apiSuccess (Created 201) {json} __v Version key of the document 
+ * @apiSuccess (Created 201) {string} name Name of the recipe
+ * @apiSuccess (Created 201) {string} ingredients Ingredients needed for the recipe
+ * @apiSuccess (Created 201) {string} instructions Instructions on how to make the dish
+ * @apiSuccess (Created 201) {string} author Author of the recipe
+ * @apiSuccess (Created 201) {string} time Preparation time of the dish
+ * @apiSuccess (Created 201) {string} tags Dish categories
+ * @apiSuccess (Created 201) {string} image Image URL of the dish
+ * @apiSuccess (Created 201) {string} timesFavorite Times the recipe has been added to favorite
+ * @apiSuccess (Created 201) {string} _id ID of the account initialize by MongoDB
+ * @apiSuccess (Created 201) {string} createdAt Date and time when the account was created
+ * @apiSuccess (Created 201) {string} updatedAt Date and time when the account was updated
+ * @apiSuccess (Created 201) {string} __v Version key of the document 
  * 
  * @apiSuccessExample Success-Response:
  * {
@@ -103,7 +103,7 @@ router.post("/recipes/upload", authMiddleware.verifyUser, recipeController.creat
  *   "__v": 0
  * }
  * 
- * @apiError (Unauthorized 401) {json} Unauthenticated User don't have token
+ * @apiError (Unauthorized 401) {string} Unauthenticated User don't have token
  * @apiError (Forbidden 403) {json} InvalidToken User's token has expired 
  * 
  * @apiErrorExample Error-Response:
