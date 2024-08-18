@@ -1,4 +1,6 @@
 const Report = require("../models/Report");
+const Recipe = require("../models/Recipe");
+const User = require("../models/User");
 
 const reportController = {
     getAll: async(req, res) => {
@@ -16,6 +18,8 @@ const reportController = {
     reportOne: async(req, res) => {
         const {recipeId, userId} = req.body;
         try {
+            await User.findById(userId);
+            await Recipe.findById(recipeId);
             const reportedRecipe = await Report.findOne({ recipeId: recipeId });
             if (reportedRecipe) {
                 const reportedBy = reportedRecipe.reportedBy;
