@@ -23,10 +23,10 @@ router.get("/recipes", recipeController.getAll);
  * @apiSuccess {string} time Preparation time of the dish
  * @apiSuccess {string} tags Dish categories
  * @apiSuccess {string} image Image URL of the dish
- * @apiSuccess {string} timesFavorite Times the recipe has been added to favorite
- * @apiSuccess {string} createdAt Date and time when the account was created
- * @apiSuccess {string} updatedAt Date and time when the account was updated
- * @apiSuccess {string} __v Version key of the document
+ * @apiSuccess {number} timesFavorite Times the recipe has been added to favorite
+ * @apiSuccess {date} createdAt Date and time when the account was created
+ * @apiSuccess {date} updatedAt Date and time when the account was updated
+ * @apiSuccess {number} __v Version key of the document
  * 
  * @apiSuccessExample Success-Response:
  * [
@@ -81,11 +81,11 @@ router.post("/recipes/upload", authMiddleware.verifyUser, recipeController.creat
  * @apiSuccess (Created 201) {string} time Preparation time of the dish
  * @apiSuccess (Created 201) {string} tags Dish categories
  * @apiSuccess (Created 201) {string} image Image URL of the dish
- * @apiSuccess (Created 201) {string} timesFavorite Times the recipe has been added to favorite
+ * @apiSuccess (Created 201) {number} timesFavorite Times the recipe has been added to favorite
  * @apiSuccess (Created 201) {string} _id ID of the account initialize by MongoDB
- * @apiSuccess (Created 201) {string} createdAt Date and time when the account was created
- * @apiSuccess (Created 201) {string} updatedAt Date and time when the account was updated
- * @apiSuccess (Created 201) {string} __v Version key of the document 
+ * @apiSuccess (Created 201) {date} createdAt Date and time when the account was created
+ * @apiSuccess (Created 201) {date} updatedAt Date and time when the account was updated
+ * @apiSuccess (Created 201) {number} __v Version key of the document 
  * 
  * @apiSuccessExample Success-Response:
  * {
@@ -103,7 +103,7 @@ router.post("/recipes/upload", authMiddleware.verifyUser, recipeController.creat
  *   "__v": 0
  * }
  * 
- * @apiError (Unauthorized 401) {string} Unauthenticated User don't have token
+ * @apiError (Unauthorized 401) {json} Unauthenticated User don't have token
  * @apiError (Forbidden 403) {json} InvalidToken User's token has expired 
  * 
  * @apiErrorExample Error-Response:

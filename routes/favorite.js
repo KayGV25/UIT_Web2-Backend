@@ -25,10 +25,10 @@ router.get("/favorites/recipes/:id", authMiddleware.verifyUser, favoriteControll
  * @apiSuccess {string} time Preparation time of the dish
  * @apiSuccess {string} tags Dish categories
  * @apiSuccess {string} image Image URL of the dish
- * @apiSuccess {string} timesFavorite Times the recipe has been added to favorite
- * @apiSuccess {string} createdAt Date and time when the account was created
- * @apiSuccess {string} updatedAt Date and time when the account was updated
- * @apiSuccess {string} __v Version key of the document
+ * @apiSuccess {number} timesFavorite Times the recipe has been added to favorite
+ * @apiSuccess {date} createdAt Date and time when the account was created
+ * @apiSuccess {date} updatedAt Date and time when the account was updated
+ * @apiSuccess {number} __v Version key of the document
  * 
  * @apiSuccessExample Success response:
  * [

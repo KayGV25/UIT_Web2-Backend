@@ -17,11 +17,11 @@ router.get("/reports/recipes", authMiddleware.verifyAdmin, reportController.getA
  * 
  * @apiSuccess {string} _id ID of the reported recipe initialize by MongoDB
  * @apiSuccess {string} recipeId ID of the recipe
- * @apiSuccess {string} reportedBy User IDs of the accounts who reported
- * @apiSuccess {string} timesReported Times the recipe has been reported
- * @apiSuccess {string} createdAt Date and time when the account was created
- * @apiSuccess {string} updatedAt Date and time when the account was updated
- * @apiSuccess {string} __v Version key of the document 
+ * @apiSuccess {string[]} reportedBy User IDs of the accounts who reported
+ * @apiSuccess {number} timesReported Times the recipe has been reported
+ * @apiSuccess {date} createdAt Date and time when the account was created
+ * @apiSuccess {date} updatedAt Date and time when the account was updated
+ * @apiSuccess {number} __v Version key of the document 
  * 
  * @apiSuccessExample Success-Response:
  * [
@@ -63,12 +63,12 @@ router.post("/reports/recipes", authMiddleware.verifyUser, reportController.repo
  * curl -i http://localhost:443/reports/recipes
  * 
  * @apiSuccess (Created 201) {string} recipeId ID of the recipe
- * @apiSuccess (Created 201) {string} reportedBy User IDs of the accounts who reported
- * @apiSuccess (Created 201) {string} timesReported Times the recipe has been reported
+ * @apiSuccess (Created 201) {string[]} reportedBy User IDs of the accounts who reported
+ * @apiSuccess (Created 201) {number} timesReported Times the recipe has been reported
  * @apiSuccess (Created 201) {string} _id ID of the reported recipe initialize by MongoDB
- * @apiSuccess (Created 201) {string} createdAt Date and time when the account was created
- * @apiSuccess (Created 201) {string} updatedAt Date and time when the account was updated
- * @apiSuccess (Created 201) {string} __v Version key of the document
+ * @apiSuccess (Created 201) {date} createdAt Date and time when the account was created
+ * @apiSuccess (Created 201) {date} updatedAt Date and time when the account was updated
+ * @apiSuccess (Created 201) {number} __v Version key of the document
  * 
  * @apiSuccessExample Success-Response:
  * {

@@ -19,12 +19,12 @@ router.post("/register", authController.registerUser);
  * 
  * @apiSuccess (Created 201) {string} username Username of the newly created account
  * @apiSuccess (Created 201) {string} password Hashed password of the newly created account
- * @apiSuccess (Created 201) {string} isAdmin Indicates the account is an admin account or not (Default value is `false`)
- * @apiSuccess (Created 201) {string} favorite The account's favorite recipes (Default value is `[]`)
+ * @apiSuccess (Created 201) {boolean} isAdmin Indicates the account is an admin account or not (Default value is `false`)
+ * @apiSuccess (Created 201) {string[]} favorite The account's favorite recipes (Default value is `[]`)
  * @apiSuccess (Created 201) {string} _id ID of the account initialize by MongoDB
- * @apiSuccess (Created 201) {string} createdAt Date and time when the account was created
- * @apiSuccess (Created 201) {string} updatedAt Date and time when the account was updated
- * @apiSuccess (Created 201) {string} __v Version key of the document
+ * @apiSuccess (Created 201) {date} createdAt Date and time when the account was created
+ * @apiSuccess (Created 201) {date} updatedAt Date and time when the account was updated
+ * @apiSuccess (Created 201) {number} __v Version key of the document
  * 
  * @apiSuccessExample Success-Response:
  * {
@@ -81,11 +81,11 @@ router.post("/login", authController.loginUser);
  * 
  * @apiSuccess {string} _id ID of the account initialize by MongoDB
  * @apiSuccess {string} username Username of the account
- * @apiSuccess {string} isAdmin Indicates the account is an admin account or not
- * @apiSuccess {string} favorite The account's favorite recipes
- * @apiSuccess {string} createdAt Date and time when the account was created
- * @apiSuccess {string} updatedAt Date and time when the account was updated
- * @apiSuccess {string} __v Version key of the document
+ * @apiSuccess {boolean} isAdmin Indicates the account is an admin account or not
+ * @apiSuccess {string[]} favorite The account's favorite recipes
+ * @apiSuccess {date} createdAt Date and time when the account was created
+ * @apiSuccess {date} updatedAt Date and time when the account was updated
+ * @apiSuccess {number} __v Version key of the document
  * @apiSuccess {string} token Json Web Token generated when the user login
  * 
  * @apiSuccessExample Success response:
