@@ -5,7 +5,7 @@ const recipeController = {
         try {
             const recipes = await Recipe.find();
             if (recipes.length === 0) {
-                return res.status(404).json("No reicpe found.");
+                return res.status(204).json([]);
             }
             res.status(200).json(recipes);
         }
@@ -52,7 +52,7 @@ const recipeController = {
 
             const recipes = await Recipe.find(query);
             if (recipes.length === 0) {
-                return res.status(404).json("No recipe found.");
+                return res.status(204).json([]);
             }
             res.status(200).json(recipes);
         }
@@ -74,7 +74,7 @@ const recipeController = {
         try {
             const recipe = await Recipe.findByIdAndDelete(req.params.id);
             if (!recipe) {
-                return res.status(204).json("Recipe not found.");
+                return res.status(204).json([]);
             }
             res.status(200).json("Recipe deleted.");
         }

@@ -7,7 +7,7 @@ const reportController = {
         try {
             const reportedRecipes = await Report.find();
             if (reportedRecipes.length === 0) {
-                return res.status(404).json("No reported recipe found.");
+                return res.status(204).json([]);
             }
             res.status(200).json(reportedRecipes);
         }
@@ -58,7 +58,7 @@ const reportController = {
                 res.status(200).json("Recipe deleted.");
             }
             else {
-                res.status(204).json("No recipe found.");
+                res.status(204).json([]);
             }
         }
         catch (err) {
